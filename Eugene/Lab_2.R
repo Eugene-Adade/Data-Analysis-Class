@@ -20,4 +20,16 @@ read_csv('first meter line
          col_names = T,
           skip = 2,
           comment = '#')
+
+#inline files with meter header
+read_csv('first meter line
+         second meter line
+         c1,c2,c3
+         1,a,F
+         2,b,F
+         3,c,F', 
+         show_col_types = T,
+         col_names = F,
+         skip = 3,
+         comment = '#')
           
