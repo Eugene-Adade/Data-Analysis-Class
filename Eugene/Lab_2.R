@@ -250,3 +250,58 @@ main_data %>% select(class, new_class) %>%
 
 #end of Assignment 2
 
+#A copy of the main dataset
+copy_main_data <- main_data
+
+#removing old columns
+copy_main_data <- copy_main_data %>% select(-diabetes_melitus, -appetite, -class, 
+                                            -coronary_artery_disease, -pedal_edema, 
+                                            -white_blood_cell_count,
+                                            -red_blood_cell_count, -pack_cell_volume)
+
+#renaming of columns
+copy_main_data <- copy_main_data %>% rename(appetite = new_appetite, 
+                                            class = new_class,
+                                            pedal_edema = new_pedal_edema,
+                                            red_blood_cell_count = new_red_blood_cell_count,
+                                            white_blood_cell_count = new_white_blood_cell_count,
+                                            coronary_artery_disease = new_coronary_artery_disease,
+                                            pack_cell_volume = new_pack_cell_volume)
+
+#removing old columns and renaming new columns
+main_data <- main_data %>% select(-diabetes_melitus, -appetite, -class, 
+                                  -coronary_artery_disease, -pedal_edema, 
+                                  -white_blood_cell_count,
+                                  -red_blood_cell_count, -pack_cell_volume) %>% 
+                           rename(appetite = new_appetite, 
+                                    class = new_class,
+                                    pedal_edema = new_pedal_edema,
+                                    red_blood_cell_count = new_red_blood_cell_count,
+                                    white_blood_cell_count = new_white_blood_cell_count,
+                                    coronary_artery_disease = new_coronary_artery_disease,
+                                    pack_cell_volume = new_pack_cell_volume)
+                                
+
+#checking stucture of dataset
+str(main_data)
+
+#assigning specific data types to variables
+main_data <- main_data %>% 
+  mutate(spesific_gravity = factor(spesific_gravity, levels = c("1.005", 
+                                                                "1.010", 
+                                                                "1.015", 
+                                                                "1.020", 
+                                                                "1.025")))
+
+main_data <- copy_main_data
+
+main_data <- main_data %>% 
+  mutate(spesific_gravity = factor(spesific_gravity, levels = c(1.005, 
+                                                                1.010, 
+                                                                1.015, 
+                                                                1.020, 
+                                                                1.025)))
+
+#assigning factor data type to variable albumin
+main_data <- main_data %>% 
+  mutate(albumin = factor(albumin, levels = c(0, 1, 2, 3, 4, 5)))
